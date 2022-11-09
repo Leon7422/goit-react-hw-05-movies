@@ -1,6 +1,6 @@
-import { Outlet, useParams } from 'react-router';
+import { Outlet, useParams, useLocation } from 'react-router';
 import { getMovieById } from 'components/API';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { MdOutlineArrowBack } from 'react-icons/md';
 import {
   Main,
@@ -14,8 +14,12 @@ import {
 const MovieDetails = () => {
   const [movie, setMovie] = useState('');
   const { id } = useParams();
+  const location = useLocation();
+  console.log(location);
+
   useEffect(() => {
     getMovieById(id).then(setMovie);
+    console.log('1');
   }, [id]);
 
   if (!movie) {
@@ -30,7 +34,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <BackLink>
+      <BackLink to={location.state?.from ?? '/'}>
         <MdOutlineArrowBack />
         <span>Back</span>
       </BackLink>
@@ -56,7 +60,9 @@ const MovieDetails = () => {
           </li>
         </AddList>
       </SectionAdditionalInformation>
-      <Outlet></Outlet>
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
