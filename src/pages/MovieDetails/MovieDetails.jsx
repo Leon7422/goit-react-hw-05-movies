@@ -15,11 +15,9 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState('');
   const { id } = useParams();
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     getMovieById(id).then(setMovie);
-    console.log('1');
   }, [id]);
 
   if (!movie) {

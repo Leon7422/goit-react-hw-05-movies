@@ -23,7 +23,6 @@ const Movies = () => {
   }, []);
 
   const InputValue = e => {
-    console.log(inputValue);
     setInputValue(e.target.value);
   };
 
@@ -31,7 +30,6 @@ const Movies = () => {
     e.preventDefault();
     setSearchParams({ query: inputValue });
     setMovieList(await findMovies(inputValue));
-    console.log(MoviesList);
   };
 
   return (
