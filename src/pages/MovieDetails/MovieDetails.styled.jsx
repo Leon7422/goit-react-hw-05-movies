@@ -7,6 +7,11 @@ export const Main = styled.main`
   gap: 40px;
 `;
 
+export const ErrorMessage = styled.div`
+  display: flex;
+  margin: 20px;
+`;
+
 export const SectionAdditionalInformation = styled.section`
   margin: 5px 0;
   padding: 10px;
